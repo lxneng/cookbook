@@ -15,7 +15,8 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-streaming-kafka-0-10" % sparkVersion,
   "mysql" % "mysql-connector-java" % "5.1.48",
   "org.elasticsearch" %% "elasticsearch-spark-20" % "7.6.2",
-//  "org.apache.hbase" % "hbase-client" % "2.2.4"
+//  "org.apache.hbase" % "hbase-client" % "2.2.4",
+  "org.apache.spark" %% "spark-sql-kafka-0-10" % "2.4.5"
 )
 resolvers ++= Seq(
   "huawei"    at "https://mirrors.huaweicloud.com/repository/maven/",
