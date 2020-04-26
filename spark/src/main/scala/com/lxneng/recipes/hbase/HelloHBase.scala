@@ -1,5 +1,6 @@
 package com.lxneng.recipes.hbase
 
+/*
 import org.apache.hadoop.hbase.client._
 import org.apache.hadoop.hbase.{CellUtil, HBaseConfiguration, TableName}
 import org.apache.hadoop.hbase.util.Bytes
@@ -49,3 +50,4 @@ object HelloHBase {
 
   }
 }
+*/
