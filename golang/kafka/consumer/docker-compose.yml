@@ -1,0 +1,9 @@
+version: '2.3'
+services:
+  kworker:
+    build: .
+    image: kworker
+    environment:
+      kafkaURL: 30.1.0.125:9092
+      topic: items
+      groupID: k-worker
