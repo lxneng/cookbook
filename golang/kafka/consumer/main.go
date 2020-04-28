@@ -9,6 +9,13 @@ import (
   kafka "github.com/segmentio/kafka-go"
 )
 
+func getEnv(key, fallback string) string {
+  if value, ok := os.LookupEnv(key); ok {
+    return value
+  }
+  return fallback
+}
+
 func getKafkaReader(kafkaURL, topic, groupID string) *kafka.Reader {
   brokers := strings.Split(kafkaURL, ",")
   return kafka.NewReader(kafka.ReaderConfig{
@@ -21,9 +28,9 @@ func getKafkaReader(kafkaURL, topic, groupID string) *kafka.Reader {
 }
 
 func main() {
-  kafkaURL := os.Getenv("kafkaURL")
-  topic := os.Getenv("topic")
-  groupID := os.Getenv("groupID")
+  kafkaURL := getEnv("kafkaURL", "localhost:9092")
+  topic := getEnv("topic", "items")
+  groupID := getEnv("groupID", "k-worker")
 
   reader := getKafkaReader(kafkaURL, topic, groupID)
   ctx := context.Background()
