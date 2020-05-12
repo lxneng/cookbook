@@ -1,9 +1,6 @@
-version: '2.3'
+version: '3'
 services:
-  kworker:
+  item-profile-worker:
     build: .
-    image: kworker
-    environment:
-      kafkaURL: 30.1.0.125:9092
-      topic: items
-      groupID: k-worker
+    image: item-profile-worker
+    env_file: .env
