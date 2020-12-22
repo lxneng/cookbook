@@ -5,6 +5,7 @@ import (
 	"hello-gin-jwt/config"
 	"hello-gin-jwt/db"
 	"hello-gin-jwt/handlers"
+	"hello-gin-jwt/middlewares"
 	"hello-gin-jwt/models"
 
 	"github.com/gin-gonic/gin"
@@ -19,11 +20,16 @@ func setupRouter() *gin.Engine {
 
 	api := r.Group("/api")
 	{
-		v1 := api.Group("/v1")
-		v1.POST("/signup", handlers.Signup)
-		v1.POST("/signin", handlers.Signin)
+		public := api.Group("/v1")
+		{
+			public.POST("/signup", handlers.Signup)
+			public.POST("/signin", handlers.Signin)
+		}
 
-		v1.GET("/profile", handlers.Profile)
+		protected := api.Group("/v1").Use(middlewares.Authz())
+		{
+			protected.GET("/profile", handlers.Profile)
+		}
 	}
 
 	return r
